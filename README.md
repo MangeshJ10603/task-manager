@@ -1,69 +1,118 @@
-# Welcome to your Lovable project
+# Task Management App
 
-## Project info
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Design Decisions](#design-decisions)
+- [Technologies Used](#technologies-used)
 
-**URL**: https://lovable.dev/projects/b68ffb44-454d-4ae0-9f9c-014709523999
+---
 
-## How can I edit this code?
+## Introduction
+This is a task management application built using React and TypeScript. It allows users to create, update, move, and delete tasks while maintaining their priority and deadline information. The app uses a context-based state management approach to handle tasks efficiently.
 
-There are several ways of editing your application.
+## Features
+- Create new tasks with a title, description, priority, and deadline.
+- Move tasks between different statuses (To Do, In Progress, Done).
+- Delete tasks permanently.
+- Search for tasks.
+- Interactive UI with smooth transitions and animations.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/b68ffb44-454d-4ae0-9f9c-014709523999) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## Project Structure
+```
+/src
+├── components
+│   ├── ui
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── dialog.tsx
+│   │   ├── dropdown-menu.tsx
+│   │   ├── input.tsx
+│   │   ├── select.tsx
+│   │   ├── textarea.tsx
+│   ├── TaskCard.tsx
+│   ├── TaskColumn.tsx
+│   ├── TaskSearch.tsx
+│   ├── CreateTaskDialog.tsx
+│
+├── context
+│   ├── TaskContext.tsx
+│
+├── hooks
+│   ├── use-toast.ts
+│   ├── use-is-mobile.ts
+│
+├── types
+│   ├── task.ts
+│
+├── App.tsx
+├── main.tsx
+└── index.css
 ```
 
-**Edit a file directly in GitHub**
+## Setup and Installation
+### Prerequisites
+Ensure you have the following installed on your system:
+- Node.js (>=16.0)
+- npm or yarn
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Steps to Run the Application
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/task-manager.git
+   cd task-manager
+   ```
 
-**Use GitHub Codespaces**
+2. Install dependencies:
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. Start the development server:
+   ```sh
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-## What technologies are used for this project?
+4. Open the app in your browser at:
+   ```
+   http://localhost:5173
+   ```
 
-This project is built with .
+## Usage
+- Click the "Add Task" button to create a new task.
+- Use the dropdown menu on each task to move it between different statuses.
+- Click the delete option to remove a task permanently.
+- Use the search bar to find specific tasks.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Design Decisions
+1. **Context API for State Management**
+   - Instead of using a global store (e.g., Redux), the Context API was chosen for a lightweight state management approach.
 
-## How can I deploy this project?
+2. **Reusable UI Components**
+   - Components like buttons, dialogs, inputs, and dropdowns are abstracted into a reusable UI library.
 
-Simply open [Lovable](https://lovable.dev/projects/b68ffb44-454d-4ae0-9f9c-014709523999) and click on Share -> Publish.
+3. **Task Data Structure**
+   - Tasks are stored with an ID, title, description, priority, deadline, and status to facilitate filtering and organization.
 
-## I want to use a custom domain - is that possible?
+4. **Animations and Transitions**
+   - CSS animations enhance the user experience by making task transitions smooth.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+5. **Mobile Responsiveness**
+   - A custom hook `useIsMobile()` ensures that the app is optimized for mobile screens.
+
+## Technologies Used
+- **React.js & TypeScript** – For building a type-safe UI.
+- **Tailwind CSS** – For styling and responsiveness.
+- **Date-fns** – For handling date formatting.
+- **Lucide-react** – For UI icons.
+
+---
+This project is continuously evolving. Contributions are welcome!
+
