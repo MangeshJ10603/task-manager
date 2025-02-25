@@ -1,13 +1,46 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import { TaskProvider } from "@/context/TaskContext";
+import { TaskColumn } from "@/components/TaskColumn";
+import { useTaskContext } from "@/context/TaskContext";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+
+function TaskBoard() {
+  const { tasks } = useTaskContext();
+
+  const todoTasks = tasks.filter((task) => task.status === "todo");
+  const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
+  const doneTasks = tasks.filter((task) => task.status === "done");
+  const expiredTasks = tasks.filter((task) => task.status === "expired");
+
+  return (
+    <div className="p-6 space-y-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">Task Manager</h1>
+        <Button>
+          <Plus className="w-4 h-4 mr-2" /> Add Task
+        </Button>
+      </div>
+      <div className="flex gap-6 overflow-x-auto pb-6">
+        <TaskColumn title="To Do" tasks={todoTasks} status="todo" />
+        <TaskColumn
+          title="In Progress"
+          tasks={inProgressTasks}
+          status="in-progress"
+        />
+        <TaskColumn title="Done" tasks={doneTasks} status="done" />
+        <TaskColumn title="Expired" tasks={expiredTasks} status="expired" />
+      </div>
+    </div>
+  );
+}
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <TaskProvider>
+      <TaskBoard />
+    </TaskProvider>
   );
 };
 
